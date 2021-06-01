@@ -1,18 +1,20 @@
-import { useContext, useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+/* eslint-disable linebreak-style */
+/* eslint-disable no-unused-vars */
+/* eslint-disable linebreak-style */
+import React, { useContext, useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import FirebaseContext from '../context/firebase';
 
+export default function Login() {
+  const history = useHistory();
+  const { firebase } = useContext(FirebaseContext);
+  const [emailAddress, setEmailAddress] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const isInvalid = password === '' || emailAddress === '';
 
-export default function Login(){
-    const history = useHistory();
-    const { firebase } = useContext{FirebaseContext};
-    const [emailAddress, setEmailAddress] = useState('');
-    const [password, setPassword] = useState('');
-    const [error, setError] = useState('');
-    const isInvalid = password === '' || emailAddress === '';
-
-    useEffect(() => {
-        document.title = 'Login - Instaface';
-    } []);
-    return <p>Login page</p>
+  useEffect(() => {
+    document.title = 'Login - Instaface';
+  }, []);
+  return <p>Login page</p>;
 }
