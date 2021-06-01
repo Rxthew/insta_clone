@@ -1,5 +1,8 @@
+/* eslint-disable linebreak-style */
+/* eslint-disable max-len */
 /* eslint-disable no-plusplus */
 // NOTE: replace 'NvPY9M9MzFTARQ6M816YAzDJxZ72' with your Firebase auth user id (can be taken from Firebase)
+// eslint-disable-next-line import/prefer-default-export
 export function seedDatabase(firebase) {
   const users = [
     {
