@@ -19,7 +19,7 @@ export default function Login() {
   return (
     <div className="container flex mx-auto max-w-screen-md items-center h-screen">
       <div className="flex w-3/5">
-        <img src="/Images/iphone-with-profile.jpg" alt="iPhone image" />
+        <img src="/Images/iphone-with-profile.jpg" alt="iPhone insta" />
       </div>
       <div className="flex flex-col w-2/5">
         <h1 className="flex justify-center w-full">
