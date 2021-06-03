@@ -1,6 +1,6 @@
 import { firebase, FieldValue} from '../lib/firebase'
 
-export async function doesUsernameExist (username){
+export async function doesUsernameExist(username){
     const result = await firebase
     .firestore()
     .collection(users)
@@ -10,7 +10,7 @@ export async function doesUsernameExist (username){
     return result.docs.map((user) => user.data().length > 0); 
 }
 
-export async function getUserByUserId ( userId){
+export async function getUserByUserId (userId){
     const result = await firebase
     .firestore()
     .collection(users)
@@ -24,4 +24,16 @@ export async function getUserByUserId ( userId){
 
     return user;
 
+}
+
+export async function getSuggestedProfiles(userId, following){
+    const result = await firebase
+    .firestore()
+    .collection('users')
+    .limit(10)
+    .get();
+
+    return result.docs()
+    .map((user)=> (...user.data(), docId= user.Id))
+    .filter((profile)=> profile.userId != userId && following.include(profile.userId));
 }
