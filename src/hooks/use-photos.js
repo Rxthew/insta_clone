@@ -16,9 +16,10 @@ export default function usePhotos() {
             if (following.length > 0){
                 followedUserPhotos = await getPhotos(userId, following);
             }
-
+            followedUserPhotos.sort(a,b) = await getPhotos(userId, following);
+            setPhotos(followedUserPhotos);
         }
-
+         
 
         }
 
