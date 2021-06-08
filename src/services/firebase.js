@@ -123,19 +123,20 @@ export async function getUserPhotosByUserId(username){
   }));
 }
 
-export async function isUserFollowingProfile(loggedInUserUsername, profileuserId){
+export async function isUserFollowingProfile(loggedInUsername, profileuserId){
   const result = await firebase
   .firestore()
   .collection('users')
-  .where('username', '==', loggedInUserame)
+  .where('username', '==', loggedInUsername)
   .where('following', 'array-contains', profileuserId)
   .get()
 
-  const [response = {}] = results.docs.map((item)=> ({
+  const [response = {}] = result.docs.map((item)=> ({
     ...item.data(),
     docId: item.id  
   }))
-
+  
+  return response.userId;
 
 }
 

@@ -1,3 +1,7 @@
+/* eslint-disable linebreak-style */
+/* eslint-disable jsx-a11y/img-redundant-alt */
+
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
@@ -19,5 +23,5 @@ export default function Header({ username }) {
 }
 
 Header.propTypes = {
-  username: PropTypes.string.isRequired
+  username: PropTypes.string.isRequired,
 };
