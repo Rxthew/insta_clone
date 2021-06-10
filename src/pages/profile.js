@@ -9,7 +9,7 @@ import UserProfile from '../components/profile';
 
 export default function Profile() {
   const { username } = useParams();
-  const { user, setUser } = useState(false);
+  const [user, setUser] = useState(false);
   const history = useHistory();
 
   useEffect(() => {

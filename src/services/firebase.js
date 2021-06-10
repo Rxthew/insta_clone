@@ -120,12 +120,11 @@ export async function getUserByUsername(username) {
   }));
 }
 
-export async function getUserPhotosByUserId(username) {
-  const [user] = await getUserByUsername(username);
+export async function getUserPhotosByUserId(userId) {
   const result = await firebase
     .firestore()
-    .collection('users')
-    .where('userId', '==', user.userId)
+    .collection('photos')
+    .where('userId', '==', userId)
     .get();
 
   return result.docs.map((item) => ({

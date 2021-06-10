@@ -1,6 +1,6 @@
 /* eslint-disable linebreak-style */
 /* eslint-disable no-undef */
-import React from 'react';
+import React, { useContext } from 'react';
 import LoggedInUserContext from '../../context/logged-in-user';
 import Suggestions from './suggestions';
 import User from './user';
