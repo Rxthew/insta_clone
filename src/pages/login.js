@@ -1,46 +1,53 @@
 /* eslint-disable linebreak-style */
+/* eslint-disable no-shadow */
 /* eslint-disable no-unused-vars */
-/* eslint-disable linebreak-style */
-import React, { useContext, useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+/* eslint-disable react/no-unescaped-entities */
+
+import React, { useState, useContext, useEffect } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import FirebaseContext from '../context/firebase';
-import * as ROUTES from '../constants/routes'
+import * as ROUTES from '../constants/routes';
 
 export default function Login() {
   const history = useHistory();
   const { firebase } = useContext(FirebaseContext);
+
   const [emailAddress, setEmailAddress] = useState('');
   const [password, setPassword] = useState('');
+
   const [error, setError] = useState('');
   const isInvalid = password === '' || emailAddress === '';
+
   const handleLogin = async (event) => {
     event.preventDefault();
+
     try {
-       await firebase.Auth().signInWithEmailAndPassword[emailAddress, password];
-       history.push(ROUTES, DASHBOARD);
-    } catch(error){
+      await firebase.auth().signInWithEmailAndPassword(emailAddress, password);
+      history.push(ROUTES.DASHBOARD);
+    } catch (error) {
       setEmailAddress('');
       setPassword('');
       setError(error.message);
-
     }
-  }
+  };
 
   useEffect(() => {
-    document.title = 'Login - Instaface';
+    document.title = 'Login - Instagram';
   }, []);
+
   return (
     <div className="container flex mx-auto max-w-screen-md items-center h-screen">
       <div className="flex w-3/5">
-        <img src="/Images/iphone-with-profile.jpg" alt="iPhone insta" />
+        <img src="/images/iphone-with-profile.jpg" alt="iPhone with Instagram app" />
       </div>
       <div className="flex flex-col w-2/5">
         <div className="flex flex-col items-center bg-white p-4 border border-gray-primary mb-4 rounded">
           <h1 className="flex justify-center w-full">
-            <img src="/Images/logo.png" alt="Instagram logo" />
+            <img src="/images/logo.png" alt="Instagram" className="mt-2 w-6/12 mb-4" />
           </h1>
 
           {error && <p className="mb-4 text-xs text-red-primary">{error}</p>}
+
           <form onSubmit={handleLogin} method="POST">
             <input
               aria-label="Enter your email address"
@@ -62,7 +69,7 @@ export default function Login() {
               disabled={isInvalid}
               type="submit"
               className={`bg-blue-medium text-white w-full rounded h-8 font-bold
-        ${isInvalid && 'opacity-50'}`}
+            ${isInvalid && 'opacity-50'}`}
             >
               Login
             </button>
@@ -70,11 +77,13 @@ export default function Login() {
         </div>
         <div className="flex justify-center items-center flex-col w-full bg-white p-4 rounded border border-gray-primary">
           <p className="text-sm">
-            Don't have an account{` `}
-            <Link to={ROUTES.SIGN_UP}>
-              Sign up 
+            Don't have an account?
+            {' '}
+            <Link to={ROUTES.SIGN_UP} className="font-bold text-blue-medium">
+              Sign up
             </Link>
           </p>
+        </div>
       </div>
     </div>
   );

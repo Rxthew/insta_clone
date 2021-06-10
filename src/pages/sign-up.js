@@ -1,4 +1,6 @@
-import { useState, useContext, useEffect } from 'react';
+/* eslint-disable linebreak-style */
+/* eslint-disable no-shadow */
+import React, { useState, useContext, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import FirebaseContext from '../context/firebase';
 import * as ROUTES from '../constants/routes';
@@ -21,18 +23,15 @@ export default function SignUp() {
 
     const usernameExists = await doesUsernameExist(username);
     if (!usernameExists.length) {
-     try {
-       const createdUserResult = await firebase    
-       .auth()
-       .createUserWithEmailAndPassword(emailAddress,password);
+      try {
+        const createdUserResult = await firebase
+          .auth()
+          .createUserWithEmailAndPassword(emailAddress, password);
 
-        // authentication
-        // -> emailAddress & password & username (displayName)
         await createdUserResult.user.updateProfile({
-          displayName: username
+          displayName: username,
         });
 
-        // firebase user collection (create a document)
         await firebase
           .firestore()
           .collection('users')
@@ -42,11 +41,11 @@ export default function SignUp() {
             fullName,
             emailAddress: emailAddress.toLowerCase(),
             following: [],
-            dateCreated: Date.now()
+            dateCreated: Date.now(),
           });
 
         history.push(ROUTES.DASHBOARD);
-      } catch (error){
+      } catch (error) {
         setFullName('');
         setEmailAddress('');
         setPassword('');
@@ -120,7 +119,8 @@ export default function SignUp() {
         </div>
         <div className="flex justify-center items-center flex-col w-full bg-white p-4 rounded border border-gray-primary">
           <p className="text-sm">
-            Have an account?{` `}
+            Have an account?
+            {' '}
             <Link to={ROUTES.LOGIN} className="font-bold text-blue-medium">
               Login
             </Link>

@@ -1,7 +1,6 @@
 /* eslint-disable linebreak-style */
 /* eslint-disable react/require-default-props */
 /* eslint-disable react/forbid-prop-types */
-/* eslint-disable linebreak-style */
 
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
